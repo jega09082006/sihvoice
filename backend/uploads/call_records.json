@@ -1,0 +1,139 @@
+{
+  "CALL-2026-03231734": {
+    "call_id": "CALL-2026-03231734",
+    "saved_at": "2026-09-03T17:47:34.123760",
+    "result": {
+      "preprocessing": {
+        "cleaned_audio_path": "uploads\\cleaned\\ed7e68576d18441c98c719df46bb2e75_cleaned_cleaned.wav",
+        "duration_seconds": 24.712,
+        "sample_rate": 16000,
+        "noise_suppression_applied": true,
+        "gain_normalized": true,
+        "bandpass_filtered": true,
+        "original_format": "wav",
+        "file_size_mb": 0.754
+      },
+      "whisper": {
+        "full_transcript": " van Salver",
+        "language_detected": "nn",
+        "confidence_score": 0.0,
+        "segments": [
+          {
+            "start": 3.6199999999999997,
+            "end": 5.02,
+            "text": " van",
+            "words": [
+              {
+                "word": " van",
+                "start": 3.6199999999999997,
+                "end": 5.02
+              }
+            ]
+          },
+          {
+            "start": 14.44,
+            "end": 15.84,
+            "text": " Salver",
+            "words": [
+              {
+                "word": " Salver",
+                "start": 14.44,
+                "end": 15.84
+              }
+            ]
+          }
+        ],
+        "model_used": "Speech Transcription Engine"
+      },
+      "diarization": {
+        "num_speakers_detected": 2,
+        "speakers": [
+          "Caller",
+          "Operator"
+        ],
+        "diarization_method": "Neural Overlap Detection + Whisper Embeddings",
+        "labeled_transcript": [
+          {
+            "speaker": "Caller",
+            "start": 3.6199999999999997,
+            "end": 5.02,
+            "text": " van"
+          },
+          {
+            "speaker": "Operator",
+            "start": 14.44,
+            "end": 15.84,
+            "text": " Salver"
+          }
+        ],
+        "warning": "HF_TOKEN is not set. Using fallback diarization logic."
+      },
+      "emotion": {
+        "caller_dominant_emotion": "fearful",
+        "operator_dominant_emotion": "fearful",
+        "emotion_timeline": [
+          {
+            "speaker": "Caller",
+            "start": 3.6199999999999997,
+            "end": 5.02,
+            "emotion": "fearful",
+            "confidence": 0.1353776454925537
+          },
+          {
+            "speaker": "Operator",
+            "start": 14.44,
+            "end": 15.84,
+            "emotion": "fearful",
+            "confidence": 0.1353776454925537
+          }
+        ],
+        "model_used": "Wav2Vec2 Citizen Emotion Model"
+      },
+      "acoustics": {
+        "pitch_variance": 12954.115835554097,
+        "speech_rate": 2.4711875,
+        "voice_energy_level": 0.005708904936909676,
+        "silence_ratio": 0.8953488960267078,
+        "tremor_stress_detected": false,
+        "mfcc_summary": {
+          "mean": -53.41715621948242,
+          "std": 168.18409729003906
+        },
+        "jitter": 0.010440045036375523,
+        "shimmer": 0.01212706882506609,
+        "zero_crossing_rate": 0.2184785110359671,
+        "loudness_contour": 0.69158935546875,
+        "hnr_score": 0.26481130719184875,
+        "model_used": "openSMILE Acoustic Feature Extractor"
+      },
+      "fusion": {
+        "final_emotion": "fearful",
+        "sentiment_arc": {
+          "caller": "fearful",
+          "operator": "fearful",
+          "trend": "stable"
+        },
+        "call_quality_score": 72,
+        "quality_subscores": {
+          "Empathy": 70,
+          "Clarity": 67,
+          "Responsiveness": 72,
+          "Professionalism": 80,
+          "Trauma-Sensitivity": 68,
+          "Protocol Adherence": 76
+        },
+        "escalation_risk": "Medium",
+        "issue_category": "Escalation Risk Review",
+        "resolution_status": "In Progress",
+        "recommendations": [
+          "Reassure the caller and confirm the immediate next step.",
+          "Document any signs of elevated distress or urgency for follow-up.",
+          "Escalate to a trained supervisor if the caller remains distressed or uncertain."
+        ],
+        "model_used": "CatBoost Call Quality Predictor",
+        "warning": null
+      },
+      "call_id": "CALL-2024-0001"
+    }
+  }
+}
