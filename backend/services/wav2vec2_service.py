@@ -4,6 +4,8 @@ from pathlib import Path
 
 
 class Wav2Vec2Service:
+    MODEL_NAME = "superb/wav2vec2-base-superb-er"
+
     def __init__(self) -> None:
         self.model = None
         self.model_error = None
@@ -13,7 +15,7 @@ class Wav2Vec2Service:
 
             self.model = pipeline(
                 "audio-classification",
-                model="ehcalabres/wav2vec2-lg-xlsr-en-speech-emotion-recognition",
+                model=self.MODEL_NAME,
             )
         except Exception as exc:  # pragma: no cover - depends on external model registry
             self.model_error = str(exc)
@@ -42,7 +44,13 @@ class Wav2Vec2Service:
 
         try:
             prediction = self.model(audio_path)
-            emotion_name = prediction[0].get("label", "Calm") if prediction else "Calm"
+            raw_label = prediction[0].get("label", "neu") if prediction else "neu"
+            emotion_name = {
+                "neu": "Calm",
+                "hap": "Hopeful",
+                "ang": "Angry",
+                "sad": "Distressed",
+            }.get(str(raw_label).lower(), str(raw_label).title())
             confidence = float(prediction[0].get("score", 0.0)) if prediction else 0.0
         except Exception as exc:  # pragma: no cover - runtime fallback
             emotion_name = "Calm"

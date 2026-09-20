@@ -64,11 +64,7 @@ export default function App() {
   const toggleTheme = () => {
     const newTheme = theme === 'dark' ? 'light' : 'dark';
     setTheme(newTheme);
-    if (newTheme === 'light') {
-      document.documentElement.classList.add('light');
-    } else {
-      document.documentElement.classList.remove('light');
-    }
+    document.documentElement.classList.toggle('light', newTheme === 'light');
   };
 
   useEffect(() => {
@@ -77,7 +73,7 @@ export default function App() {
 
   return (
     <Router>
-      <div className="min-h-screen flex flex-col bg-[#0a0a0f] text-gray-100 font-mono transition-colors duration-300">
+      <div className="min-h-screen flex flex-col bg-[var(--bg-dark)] text-[var(--text-main)] font-mono transition-colors duration-300">
         <Navbar theme={theme} toggleTheme={toggleTheme} />
         <div className="flex-1">
           <AnimatedRoutes theme={theme} toggleTheme={toggleTheme} />

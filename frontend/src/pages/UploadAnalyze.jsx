@@ -15,9 +15,11 @@ const STEPS = [
   { id: 'audioPre',   label: 'Audio Prep',          short: '1' },
   { id: 'whisper',    label: 'Whisper STT',          short: '2' },
   { id: 'diarize',    label: 'Diarization',          short: '3' },
-  { id: 'parallel',   label: 'Wav2Vec2 + openSMILE', short: '4' },
-  { id: 'catboost',   label: 'CatBoost',             short: '5' },
-  { id: 'firebase',   label: 'Firebase',             short: '6' },
+  { id: 'wav2vec2',   label: 'Wav2Vec2',             short: '4' },
+  { id: 'opensmile',  label: 'openSMILE',            short: '5' },
+  { id: 'bert',       label: 'BERT',                 short: '6' },
+  { id: 'catboost',   label: 'CatBoost',             short: '7' },
+  { id: 'firebase',   label: 'Firebase',             short: '8' },
   { id: 'done',       label: 'Done ✓',               short: '✓' },
 ];
 /* ─── Helpers ────────────────────────────────────────────── */
@@ -26,6 +28,12 @@ const emotionColor = (e) => ({
   Distressed: '#ef4444', Fearful: '#f87171', Traumatized: '#dc2626',
   Urgent: '#fb923c', Hesitant: '#a78bfa', Angry: '#f97316', Satisfied: '#4ade80',
 }[e] ?? '#9ca3af');
+
+const sentimentColor = (sentiment) => ({
+  Positive: '#22c55e',
+  Negative: '#ef4444',
+  Neutral: '#9ca3af',
+}[sentiment] ?? '#9ca3af');
 
 const riskStyle = (r) => ({
   Low:      { color: '#22c55e', bg: 'bg-[#22c55e]/15 border-[#22c55e]/50' },
@@ -155,14 +163,14 @@ export default function UploadAnalyze() {
       const result = await analyzeFullPipeline(uploadResult.cleaned_audio_path, (progressData) => {
         const stepIndex = {
           uploading: 0, preprocessing: 1, whisper: 2, diarization: 3,
-          wav2vec2: 4, opensmile: 4, catboost: 5, firebase: 6, done: 7,
+          wav2vec2: 4, opensmile: 5, bert: 6, catboost: 7, firebase: 8, done: 9,
         }[progressData.step];
         if (stepIndex !== undefined) setPipelineStep(stepIndex);
         if (progressData.call_id) setCallId(progressData.call_id);
       });
       setAnalysisResult(result);
       setCallId(result.call_id || '');
-      setPipelineStep(7);
+      setPipelineStep(9);
     } catch (requestError) {
       setError(`Analysis failed: ${requestError.message}`);
     } finally {
@@ -187,6 +195,7 @@ export default function UploadAnalyze() {
   const diarization = backend.diarization || {};
   const emotion = backend.emotion || {};
   const acoustics = backend.acoustics || {};
+  const bert = backend.bert || {};
   const fusion = backend.fusion || {};
   const r = {
     audioPreprocessing: {
@@ -217,9 +226,17 @@ export default function UploadAnalyze() {
       mfccSummary: JSON.stringify(acoustics.mfcc_summary || {}),
       jitterShimmer: `${acoustics.jitter || 0} / ${acoustics.shimmer || 0}`,
     },
+    bert: {
+      callerDominant: bert.caller_dominant_sentiment || 'Neutral',
+      operatorDominant: bert.operator_dominant_sentiment || 'Neutral',
+      overall: bert.overall_text_sentiment || 'Neutral',
+      timeline: bert.sentiment_timeline || [],
+      keyPhrases: bert.key_phrases || [],
+      modelUsed: bert.model_used || 'BERT Text Sentiment & Context Analyzer',
+    },
     sentimentArc: {
-      start: fusion.sentiment_arc?.caller || emotion.caller_dominant_emotion || '—',
-      end: fusion.sentiment_arc?.operator || emotion.operator_dominant_emotion || '—',
+      start: fusion.sentiment_arc?.caller || bert.caller_dominant_sentiment || emotion.caller_dominant_emotion || '—',
+      end: fusion.sentiment_arc?.operator || bert.operator_dominant_sentiment || emotion.operator_dominant_emotion || '—',
     },
     callQualityScore: fusion.call_quality_score || 0,
     operatorSubScores: Object.fromEntries(Object.entries(fusion.quality_subscores || {}).map(([key, value]) => [key.replace(/[- ]/g, '').replace(/^./, (c) => c.toLowerCase()), value])),
@@ -421,15 +438,15 @@ export default function UploadAnalyze() {
               </StepCard>
             )}
 
-            {/* STEP 5 — PARALLEL: Wav2Vec2 + openSMILE */}
+            {/* STEP 5 — PARALLEL: Wav2Vec2 + openSMILE + BERT */}
             {isStepDone(4) && (
               <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.45 }}>
                 <div className="text-xs text-gray-400 font-bold uppercase tracking-wider mb-3 flex items-center gap-2">
                   <span className="h-px flex-1 bg-white/10"></span>
-                  Step 5 — Parallel Processing (Wav2Vec2 ∥ openSMILE)
+                  Step 5 — Parallel Processing (Wav2Vec2 ∥ openSMILE ∥ BERT)
                   <span className="h-px flex-1 bg-white/10"></span>
                 </div>
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
 
                   {/* LEFT — Wav2Vec2 */}
                   <div className="bg-black/40 rounded-2xl border border-white/10 overflow-hidden" style={{ borderLeftColor: '#22c55e', borderLeftWidth: 4 }}>
@@ -548,15 +565,66 @@ export default function UploadAnalyze() {
                       <MLBadge label="openSMILE" desc="Acoustic Feature Extractor" color="#a78bfa" />
                     </div>
                   </div>
+
+                  {/* RIGHT — BERT */}
+                  <div className="bg-black/40 rounded-2xl border border-white/10 overflow-hidden" style={{ borderLeftColor: '#60a5fa', borderLeftWidth: 4 }}>
+                    <div className="flex items-center gap-2.5 px-5 py-3.5 border-b border-white/10 bg-[#60a5fa]/5">
+                      <Activity className="w-4 h-4 text-[#60a5fa]" />
+                      <h3 className="text-sm font-bold text-white uppercase tracking-wide">BERT — Text Sentiment &amp; Context</h3>
+                    </div>
+                    <div className="p-5 space-y-4">
+                      <div className="grid grid-cols-2 gap-2">
+                        {[
+                          { label: 'Caller Dominant', value: r.bert.callerDominant },
+                          { label: 'Operator Dominant', value: r.bert.operatorDominant },
+                        ].map(({ label, value }) => (
+                          <div key={label} className="bg-white/5 p-2.5 rounded-lg border border-white/10 text-center">
+                            <div className="text-[10px] text-gray-500 uppercase">{label}</div>
+                            <span className="inline-block mt-1 px-2 py-0.5 rounded border text-xs font-bold"
+                              style={{ color: sentimentColor(value), borderColor: sentimentColor(value) + '60', backgroundColor: sentimentColor(value) + '18' }}>
+                              {value}
+                            </span>
+                          </div>
+                        ))}
+                      </div>
+                      <div className="bg-white/5 p-3 rounded-xl border border-white/10 text-center">
+                        <div className="text-[10px] text-gray-500 uppercase mb-1">Overall Text Sentiment</div>
+                        <div className="text-xl font-black" style={{ color: sentimentColor(r.bert.overall) }}>{r.bert.overall}</div>
+                      </div>
+                      <div>
+                        <p className="text-[10px] text-gray-500 uppercase mb-2">Sentiment Timeline</p>
+                        <div className="space-y-1.5 max-h-48 overflow-y-auto">
+                          {r.bert.timeline.map((segment, i) => (
+                            <div key={i} className="px-2.5 py-2 rounded-lg bg-white/5 border border-white/10 text-[11px]">
+                              <div className="flex items-center justify-between gap-2">
+                                <span className="text-gray-400">[{Number(segment.start || 0).toFixed(1)}s] {segment.speaker}</span>
+                                <span className="font-bold" style={{ color: sentimentColor(segment.sentiment) }}>{segment.sentiment}</span>
+                              </div>
+                              <div className="text-gray-500 mt-0.5">Confidence: {Math.round((segment.confidence || 0) * 100)}%</div>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                      <div>
+                        <p className="text-[10px] text-gray-500 uppercase mb-2">Key Phrases Detected</p>
+                        <div className="flex flex-wrap gap-1.5">
+                          {r.bert.keyPhrases.map((phrase) => (
+                            <span key={phrase} className="px-2 py-1 rounded-lg bg-[#60a5fa]/10 border border-[#60a5fa]/30 text-[10px] text-[#93c5fd]">{phrase}</span>
+                          ))}
+                        </div>
+                      </div>
+                      <MLBadge label="Powered by BERT" desc="Text Sentiment & Context Analyzer" color="#60a5fa" />
+                    </div>
+                  </div>
                 </div>
               </motion.div>
             )}
 
             {/* STEP 6 — CATBOOST FUSION */}
-            {isStepDone(5) && (
-              <StepCard step="Step 6 — CatBoost Fusion · Call Quality Predictor" icon={Zap} accentColor="#f59e0b" delay={0.1}>
+            {isStepDone(7) && (
+              <StepCard step="Step 7 — CatBoost Fusion · Call Quality Predictor" icon={Zap} accentColor="#f59e0b" delay={0.1}>
                 <div className="mb-5 p-3 rounded-xl bg-[#f59e0b]/10 border border-[#f59e0b]/30 text-xs text-[#f59e0b] font-mono flex items-center gap-2">
-                  <Zap className="w-4 h-4 flex-shrink-0" /> Fusing voice emotion (Wav2Vec2) + acoustic features (openSMILE) → Final predictions…
+                  <Zap className="w-4 h-4 flex-shrink-0" /> Fusing Wav2Vec2 + openSMILE + BERT outputs...
                 </div>
 
                 <div className="space-y-6">
@@ -565,7 +633,7 @@ export default function UploadAnalyze() {
                     <h4 className="text-xs font-bold text-white uppercase tracking-wide mb-3 flex items-center gap-2">
                       <span className="text-[#f59e0b]">A</span> · Final Emotion &amp; Sentiment
                     </h4>
-                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                    <div className="grid grid-cols-1 sm:grid-cols-4 gap-3">
                       <div className="bg-white/5 p-3 rounded-xl border border-white/10 text-center">
                         <div className="text-[10px] text-gray-500 mb-1">Caller Overall</div>
                         <div className="font-bold" style={{ color: emotionColor(r.wav2vec2.complainantDominant) }}>{r.wav2vec2.complainantDominant}</div>
@@ -580,6 +648,15 @@ export default function UploadAnalyze() {
                           <span style={{ color: emotionColor(r.sentimentArc.start) }}>{r.sentimentArc.start}</span>
                           <span className="text-gray-500">→</span>
                           <span style={{ color: emotionColor(r.sentimentArc.end) }}>{r.sentimentArc.end}</span>
+                        </div>
+                      </div>
+                      <div className="bg-white/5 p-3 rounded-xl border border-white/10 text-center">
+                        <div className="text-[10px] text-gray-500 mb-1">Text Sentiment</div>
+                        <div className="font-bold" style={{ color: sentimentColor(fusion.text_sentiment || r.bert.overall) }}>
+                          {fusion.text_sentiment || r.bert.overall}
+                        </div>
+                        <div className="text-[10px] text-gray-500 mt-1">
+                          Combined confidence: {Math.round((fusion.combined_confidence || 0) * 100)}%
                         </div>
                       </div>
                     </div>
@@ -671,7 +748,7 @@ export default function UploadAnalyze() {
             )}
 
             {/* STEP 7 — FIREBASE */}
-            {isStepDone(6) && (
+            {isStepDone(8) && (
               <StepCard step="Step 7 — Firebase Storage" icon={Database} accentColor="#fb923c" delay={0.1}>
                 <div className="flex flex-col sm:flex-row sm:items-center gap-4">
                   <div className="flex items-center gap-2.5 px-5 py-3 rounded-xl bg-[#22c55e]/15 border border-[#22c55e]/40 text-[#22c55e] font-bold text-sm">
@@ -691,7 +768,7 @@ export default function UploadAnalyze() {
             )}
 
             {/* STEP 8 — EXPORT */}
-            {isStepDone(6) && (
+            {isStepDone(8) && (
               <div className="flex flex-col sm:flex-row items-center gap-4 p-4 rounded-2xl bg-[#1a73e8]/10 border border-[#1a73e8]/30">
                 <div className="flex items-center gap-2 text-sm text-gray-300 flex-1">
                   <Database className="w-4 h-4 text-[#1a73e8]" />

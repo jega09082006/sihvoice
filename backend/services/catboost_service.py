@@ -13,9 +13,13 @@ class CatBoostService:
         except Exception as exc:  # pragma: no cover - optional dependency path
             self.model_error = str(exc)
 
-    def predict(self, emotion_result: dict, acoustic_result: dict) -> dict:
+    def predict(self, emotion_result: dict, acoustic_result: dict, bert_result: dict | None = None) -> dict:
+        bert_result = bert_result or {}
         caller_emotion = emotion_result.get("caller_dominant_emotion", "Calm")
         operator_emotion = emotion_result.get("operator_dominant_emotion", "Calm")
+        caller_sentiment = bert_result.get("caller_dominant_sentiment", "Neutral")
+        operator_sentiment = bert_result.get("operator_dominant_sentiment", "Neutral")
+        overall_text_sentiment = bert_result.get("overall_text_sentiment", "Neutral")
         speech_rate = float(acoustic_result.get("speech_rate", 0.0))
         voice_energy = float(acoustic_result.get("voice_energy_level", 0.0))
         silence_ratio = float(acoustic_result.get("silence_ratio", 0.0))
@@ -31,7 +35,23 @@ class CatBoostService:
             score += 7
         if voice_energy > 0.2:
             score += 5
+        if caller_sentiment == "Negative":
+            score -= 5
+        if overall_text_sentiment == "Positive":
+            score += 3
         score = max(0, min(100, score))
+
+        emotion_confidences = [
+            float(item.get("confidence", 0.0))
+            for item in emotion_result.get("emotion_timeline", [])
+        ]
+        sentiment_confidences = [
+            float(item.get("confidence", 0.0))
+            for item in bert_result.get("sentiment_timeline", [])
+        ]
+        emotion_confidence = sum(emotion_confidences) / len(emotion_confidences) if emotion_confidences else 0.0
+        sentiment_confidence = sum(sentiment_confidences) / len(sentiment_confidences) if sentiment_confidences else 0.0
+        combined_confidence = round((emotion_confidence + sentiment_confidence + 1.0) / 3, 3)
 
         quality_subscores = {
             "Empathy": min(100, max(40, 70 + ("Hopeful" in operator_emotion) * 10 - ("Distressed" in caller_emotion) * 8)),
@@ -68,10 +88,12 @@ class CatBoostService:
         return {
             "final_emotion": caller_emotion,
             "sentiment_arc": {
-                "caller": caller_emotion,
-                "operator": operator_emotion,
-                "trend": "stable" if caller_emotion == operator_emotion else "dynamic",
+                "caller": caller_sentiment,
+                "operator": operator_sentiment,
+                "trend": "stable" if caller_sentiment == operator_sentiment else "dynamic",
             },
+            "text_sentiment": overall_text_sentiment,
+            "combined_confidence": combined_confidence,
             "call_quality_score": int(score),
             "quality_subscores": quality_subscores,
             "escalation_risk": escalation_risk,
