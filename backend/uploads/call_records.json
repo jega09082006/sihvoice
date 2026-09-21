@@ -31053,5 +31053,500 @@
       },
       "call_id": "CALL-2024-0001"
     }
+  },
+  "CALL-2026-20235802": {
+    "call_id": "CALL-2026-20235802",
+    "saved_at": "2026-09-20T18:28:02.713430",
+    "result": {
+      "preprocessing": {
+        "cleaned_audio_path": "uploads\\cleaned\\bc06d72d132d4a3399ac61a9ab3a31c9_cleaned_cleaned.wav",
+        "duration_seconds": 43.311,
+        "sample_rate": 16000,
+        "noise_suppression_applied": true,
+        "gain_normalized": true,
+        "bandpass_filtered": true,
+        "original_format": "wav",
+        "file_size_mb": 1.322
+      },
+      "whisper": {
+        "full_transcript": " \u0c99\u0ca4\u0cca\u0cb2\u0cd2 \u0ca4\u0cd2\u0cc5\u0cb0\u0ca4\u0cd2\u0ca6\u0ca4\u0ca4\u0cc3\u0caf\u0ca4\u0cd2\u0cae\u0caf \u0cb3\u0ccdledge\u00f3\u0ca4\u0cc3\u0caf\u0ca4\u0ccb\u0ca4\u0cc7 \u0cac\u0c97\u0cae\u0cac\u0cc6 \u0cac\u0c97\u0cc3\u0ccd\u0caf\u0cb0\u0ccb\u0ca6\u0cc3 \u0c95\u0ca4\u0cc2\u0ca0\u0ccb\u0cb9\u0cbe\u0c94\u0ccd\u0c95\u0c9a\u0cb5\u0ca4\u0cc1\u0ca4\u0ccd\u0caf\u0ca4\u0cc1 favour neighbour \u0c82\u0ca0\u0cb0\u0cc1 \u0c88\u0c95\u0cc1\u0c97\u0cc1 \u0ca8\u0cc2\u0c97\u0cb0\u0ca4 \u0cac\u0cae\u0cb0\u0cc1\u0c8d\u0ca4\u0ca4\u0ca4\u0cc1\u0ca4\u0cc6",
+        "language_detected": "hi",
+        "confidence_score": 0.0,
+        "segments": [
+          {
+            "start": 30.32,
+            "end": 33.12,
+            "text": " \u0c99\u0ca4\u0cca\u0cb2\u0cd2 \u0ca4\u0cd2\u0cc5\u0cb0\u0ca4\u0cd2\u0ca6\u0ca4\u0ca4\u0cc3\u0caf\u0ca4\u0cd2\u0cae\u0caf",
+            "words": [
+              {
+                "word": " \u0c99\u0ca4\u0cca\u0cb2\u0cd2",
+                "start": 30.32,
+                "end": 31.72
+              },
+              {
+                "word": " \u0ca4\u0cd2\u0cc5\u0cb0\u0ca4\u0cd2\u0ca6\u0ca4\u0ca4\u0cc3\u0caf\u0ca4\u0cd2\u0cae\u0caf",
+                "start": 31.72,
+                "end": 33.12
+              }
+            ]
+          },
+          {
+            "start": 34.7,
+            "end": 37.42,
+            "text": " \u0cb3\u0ccdledge\u00f3\u0ca4\u0cc3\u0caf\u0ca4\u0ccb\u0ca4\u0cc7 \u0cac\u0c97\u0cae\u0cac\u0cc6 \u0cac\u0c97\u0cc3\u0ccd\u0caf\u0cb0\u0ccb\u0ca6\u0cc3 \u0c95\u0ca4\u0cc2\u0ca0\u0ccb\u0cb9\u0cbe\u0c94\u0ccd\u0c95\u0c9a\u0cb5\u0ca4\u0cc1\u0ca4\u0ccd\u0caf\u0ca4\u0cc1 favour neighbour",
+            "words": [
+              {
+                "word": " \u0cb3\u0ccdledge\u00f3\u0ca4\u0cc3\u0caf\u0ca4\u0ccb\u0ca4\u0cc7",
+                "start": 34.7,
+                "end": 36.1
+              },
+              {
+                "word": " \u0cac\u0c97\u0cae\u0cac\u0cc6",
+                "start": 36.1,
+                "end": 36.1
+              },
+              {
+                "word": " \u0cac\u0c97\u0cc3\u0ccd\u0caf\u0cb0\u0ccb\u0ca6\u0cc3",
+                "start": 36.1,
+                "end": 36.1
+              },
+              {
+                "word": " \u0c95\u0ca4\u0cc2\u0ca0\u0ccb\u0cb9\u0cbe\u0c94\u0ccd\u0c95\u0c9a\u0cb5\u0ca4\u0cc1\u0ca4\u0ccd\u0caf\u0ca4\u0cc1",
+                "start": 36.1,
+                "end": 36.1
+              },
+              {
+                "word": " favour",
+                "start": 36.1,
+                "end": 36.1
+              },
+              {
+                "word": " neighbour",
+                "start": 36.1,
+                "end": 37.42
+              }
+            ]
+          },
+          {
+            "start": 37.42,
+            "end": 42.04,
+            "text": " \u0c82\u0ca0\u0cb0\u0cc1 \u0c88\u0c95\u0cc1\u0c97\u0cc1 \u0ca8\u0cc2\u0c97\u0cb0\u0ca4",
+            "words": [
+              {
+                "word": " \u0c82\u0ca0\u0cb0\u0cc1",
+                "start": 37.42,
+                "end": 37.44
+              },
+              {
+                "word": " \u0c88\u0c95\u0cc1\u0c97\u0cc1",
+                "start": 37.44,
+                "end": 40.92
+              },
+              {
+                "word": " \u0ca8\u0cc2\u0c97\u0cb0\u0ca4",
+                "start": 40.92,
+                "end": 42.04
+              }
+            ]
+          },
+          {
+            "start": 42.04,
+            "end": 43.28,
+            "text": " \u0cac\u0cae\u0cb0\u0cc1\u0c8d\u0ca4\u0ca4\u0ca4\u0cc1\u0ca4\u0cc6",
+            "words": [
+              {
+                "word": " \u0cac\u0cae\u0cb0\u0cc1\u0c8d\u0ca4\u0ca4\u0ca4\u0cc1\u0ca4\u0cc6",
+                "start": 42.04,
+                "end": 43.28
+              }
+            ]
+          }
+        ],
+        "model_used": "Speech Transcription Engine"
+      },
+      "diarization": {
+        "num_speakers_detected": 2,
+        "speakers": [
+          "Caller",
+          "Operator"
+        ],
+        "diarization_method": "Neural Overlap Detection + Whisper Embeddings",
+        "labeled_transcript": [
+          {
+            "speaker": "Caller",
+            "start": 30.32,
+            "end": 33.12,
+            "text": " \u0c99\u0ca4\u0cca\u0cb2\u0cd2 \u0ca4\u0cd2\u0cc5\u0cb0\u0ca4\u0cd2\u0ca6\u0ca4\u0ca4\u0cc3\u0caf\u0ca4\u0cd2\u0cae\u0caf"
+          },
+          {
+            "speaker": "Operator",
+            "start": 34.7,
+            "end": 37.42,
+            "text": " \u0cb3\u0ccdledge\u00f3\u0ca4\u0cc3\u0caf\u0ca4\u0ccb\u0ca4\u0cc7 \u0cac\u0c97\u0cae\u0cac\u0cc6 \u0cac\u0c97\u0cc3\u0ccd\u0caf\u0cb0\u0ccb\u0ca6\u0cc3 \u0c95\u0ca4\u0cc2\u0ca0\u0ccb\u0cb9\u0cbe\u0c94\u0ccd\u0c95\u0c9a\u0cb5\u0ca4\u0cc1\u0ca4\u0ccd\u0caf\u0ca4\u0cc1 favour neighbour"
+          },
+          {
+            "speaker": "Caller",
+            "start": 37.42,
+            "end": 42.04,
+            "text": " \u0c82\u0ca0\u0cb0\u0cc1 \u0c88\u0c95\u0cc1\u0c97\u0cc1 \u0ca8\u0cc2\u0c97\u0cb0\u0ca4"
+          },
+          {
+            "speaker": "Operator",
+            "start": 42.04,
+            "end": 43.28,
+            "text": " \u0cac\u0cae\u0cb0\u0cc1\u0c8d\u0ca4\u0ca4\u0ca4\u0cc1\u0ca4\u0cc6"
+          }
+        ],
+        "warning": "HF_TOKEN is not set. Using fallback diarization logic."
+      },
+      "emotion": {
+        "caller_dominant_emotion": "Calm",
+        "operator_dominant_emotion": "Calm",
+        "emotion_timeline": [
+          {
+            "speaker": "Caller",
+            "start": 30.32,
+            "end": 33.12,
+            "emotion": "Calm",
+            "confidence": 0.9794214963912964
+          },
+          {
+            "speaker": "Operator",
+            "start": 34.7,
+            "end": 37.42,
+            "emotion": "Calm",
+            "confidence": 0.9794214963912964
+          },
+          {
+            "speaker": "Caller",
+            "start": 37.42,
+            "end": 42.04,
+            "emotion": "Calm",
+            "confidence": 0.9794214963912964
+          },
+          {
+            "speaker": "Operator",
+            "start": 42.04,
+            "end": 43.28,
+            "emotion": "Calm",
+            "confidence": 0.9794214963912964
+          }
+        ],
+        "model_used": "Wav2Vec2 Citizen Emotion Model"
+      },
+      "acoustics": {
+        "pitch_variance": 9315.589553253163,
+        "speech_rate": 4.33109375,
+        "voice_energy_level": 0.008358219638466835,
+        "silence_ratio": 0.8304137955914715,
+        "tremor_stress_detected": false,
+        "mfcc_summary": {
+          "mean": -46.56037139892578,
+          "std": 146.2772674560547
+        },
+        "jitter": 0.011700605042278767,
+        "shimmer": 0.013849236071109772,
+        "zero_crossing_rate": 0.14343683890016076,
+        "loudness_contour": 0.642120361328125,
+        "hnr_score": 0.3105712831020355,
+        "model_used": "openSMILE Acoustic Feature Extractor"
+      },
+      "bert": {
+        "caller_dominant_sentiment": "Positive",
+        "operator_dominant_sentiment": "Negative",
+        "sentiment_timeline": [
+          {
+            "speaker": "Caller",
+            "start": 30.32,
+            "end": 33.12,
+            "text": "\u0c99\u0ca4\u0cca\u0cb2\u0cd2 \u0ca4\u0cd2\u0cc5\u0cb0\u0ca4\u0cd2\u0ca6\u0ca4\u0ca4\u0cc3\u0caf\u0ca4\u0cd2\u0cae\u0caf",
+            "sentiment": "Positive",
+            "confidence": 0.3428076207637787
+          },
+          {
+            "speaker": "Operator",
+            "start": 34.7,
+            "end": 37.42,
+            "text": "\u0cb3\u0ccdledge\u00f3\u0ca4\u0cc3\u0caf\u0ca4\u0ccb\u0ca4\u0cc7 \u0cac\u0c97\u0cae\u0cac\u0cc6 \u0cac\u0c97\u0cc3\u0ccd\u0caf\u0cb0\u0ccb\u0ca6\u0cc3 \u0c95\u0ca4\u0cc2\u0ca0\u0ccb\u0cb9\u0cbe\u0c94\u0ccd\u0c95\u0c9a\u0cb5\u0ca4\u0cc1\u0ca4\u0ccd\u0caf\u0ca4\u0cc1 favour neighbour",
+            "sentiment": "Negative",
+            "confidence": 0.3821428418159485
+          },
+          {
+            "speaker": "Caller",
+            "start": 37.42,
+            "end": 42.04,
+            "text": "\u0c82\u0ca0\u0cb0\u0cc1 \u0c88\u0c95\u0cc1\u0c97\u0cc1 \u0ca8\u0cc2\u0c97\u0cb0\u0ca4",
+            "sentiment": "Negative",
+            "confidence": 0.6073505282402039
+          },
+          {
+            "speaker": "Operator",
+            "start": 42.04,
+            "end": 43.28,
+            "text": "\u0cac\u0cae\u0cb0\u0cc1\u0c8d\u0ca4\u0ca4\u0ca4\u0cc1\u0ca4\u0cc6",
+            "sentiment": "Positive",
+            "confidence": 0.30857792496681213
+          }
+        ],
+        "overall_text_sentiment": "Positive",
+        "key_phrases": [
+          "ledge",
+          "favour",
+          "neighbour"
+        ],
+        "model_used": "BERT Text Sentiment & Context Analyzer"
+      },
+      "fusion": {
+        "final_emotion": "Calm",
+        "sentiment_arc": {
+          "caller": "Positive",
+          "operator": "Negative",
+          "trend": "dynamic"
+        },
+        "text_sentiment": "Positive",
+        "combined_confidence": 0.797,
+        "call_quality_score": 83,
+        "quality_subscores": {
+          "Empathy": 70,
+          "Clarity": 72,
+          "Responsiveness": 72,
+          "Professionalism": 88,
+          "Trauma-Sensitivity": 68,
+          "Protocol Adherence": 76
+        },
+        "escalation_risk": "Medium",
+        "issue_category": "Escalation Risk Review",
+        "resolution_status": "In Progress",
+        "recommendations": [
+          "Reassure the caller and confirm the immediate next step.",
+          "Document any signs of elevated distress or urgency for follow-up.",
+          "Escalate to a trained supervisor if the caller remains distressed or uncertain."
+        ],
+        "model_used": "CatBoost Call Quality Predictor",
+        "warning": null
+      },
+      "call_id": "CALL-2024-0001"
+    }
+  },
+  "CALL-2026-21103110": {
+    "call_id": "CALL-2026-21103110",
+    "saved_at": "2026-09-21T05:01:10.665733",
+    "result": {
+      "preprocessing": {
+        "cleaned_audio_path": "uploads\\cleaned\\6c19a153c7eb430bab373c64938bb6b6_cleaned_cleaned.wav",
+        "duration_seconds": 43.311,
+        "sample_rate": 16000,
+        "noise_suppression_applied": true,
+        "gain_normalized": true,
+        "bandpass_filtered": true,
+        "original_format": "wav",
+        "file_size_mb": 1.322
+      },
+      "whisper": {
+        "full_transcript": " \u0935\u0947 \u0906\u0932 \u091c\u0939 chcia\u092e \u0939\u094b \u092f\u0947 \u092c \u0939\u043e\u043b\u043d\u0939\u0938\u093e\u0928 \u0915\u094b \u092c\u0947 \u0932\u093e hoy vanilla",
+        "language_detected": "hi",
+        "confidence_score": 0.0,
+        "segments": [
+          {
+            "start": 30.0,
+            "end": 43.28,
+            "text": " \u0935\u0947 \u0906\u0932 \u091c\u0939 chcia\u092e \u0939\u094b \u092f\u0947 \u092c \u0939\u043e\u043b\u043d\u0939\u0938\u093e\u0928 \u0915\u094b \u092c\u0947 \u0932\u093e hoy vanilla",
+            "words": [
+              {
+                "word": " \u0935\u0947",
+                "start": 30.0,
+                "end": 31.0
+              },
+              {
+                "word": " \u0906\u0932",
+                "start": 31.0,
+                "end": 31.14
+              },
+              {
+                "word": " \u091c\u0939",
+                "start": 31.14,
+                "end": 31.14
+              },
+              {
+                "word": " chcia\u092e",
+                "start": 31.14,
+                "end": 31.64
+              },
+              {
+                "word": " \u0939\u094b",
+                "start": 31.64,
+                "end": 31.8
+              },
+              {
+                "word": " \u092f\u0947",
+                "start": 31.8,
+                "end": 37.04
+              },
+              {
+                "word": " \u092c",
+                "start": 37.04,
+                "end": 37.28
+              },
+              {
+                "word": " \u0939\u043e\u043b\u043d\u0939\u0938\u093e\u0928",
+                "start": 37.28,
+                "end": 38.04
+              },
+              {
+                "word": " \u0915\u094b",
+                "start": 38.04,
+                "end": 38.56
+              },
+              {
+                "word": " \u092c\u0947",
+                "start": 38.56,
+                "end": 38.82
+              },
+              {
+                "word": " \u0932\u093e",
+                "start": 38.82,
+                "end": 39.18
+              },
+              {
+                "word": " hoy",
+                "start": 39.18,
+                "end": 39.18
+              },
+              {
+                "word": " vanilla",
+                "start": 39.18,
+                "end": 43.28
+              }
+            ]
+          },
+          {
+            "start": 43.28,
+            "end": 43.28,
+            "text": "",
+            "words": []
+          }
+        ],
+        "model_used": "Speech Transcription Engine"
+      },
+      "diarization": {
+        "num_speakers_detected": 2,
+        "speakers": [
+          "Caller",
+          "Operator"
+        ],
+        "diarization_method": "Neural Overlap Detection + Whisper Embeddings",
+        "labeled_transcript": [
+          {
+            "speaker": "Caller",
+            "start": 30.0,
+            "end": 43.28,
+            "text": " \u0935\u0947 \u0906\u0932 \u091c\u0939 chcia\u092e \u0939\u094b \u092f\u0947 \u092c \u0939\u043e\u043b\u043d\u0939\u0938\u093e\u0928 \u0915\u094b \u092c\u0947 \u0932\u093e hoy vanilla"
+          },
+          {
+            "speaker": "Operator",
+            "start": 43.28,
+            "end": 43.28,
+            "text": ""
+          }
+        ],
+        "warning": "HF_TOKEN is not set. Using fallback diarization logic."
+      },
+      "emotion": {
+        "caller_dominant_emotion": "Calm",
+        "operator_dominant_emotion": "Calm",
+        "emotion_timeline": [
+          {
+            "speaker": "Caller",
+            "start": 30.0,
+            "end": 43.28,
+            "emotion": "Calm",
+            "confidence": 0.9794214963912964
+          },
+          {
+            "speaker": "Operator",
+            "start": 43.28,
+            "end": 43.28,
+            "emotion": "Calm",
+            "confidence": 0.9794214963912964
+          }
+        ],
+        "model_used": "Wav2Vec2 Citizen Emotion Model"
+      },
+      "acoustics": {
+        "pitch_variance": 9315.589553253163,
+        "speech_rate": 4.33109375,
+        "voice_energy_level": 0.008358219638466835,
+        "silence_ratio": 0.8304137955914715,
+        "tremor_stress_detected": false,
+        "mfcc_summary": {
+          "mean": -46.56037139892578,
+          "std": 146.2772674560547
+        },
+        "jitter": 0.011700605042278767,
+        "shimmer": 0.013849236071109772,
+        "zero_crossing_rate": 0.14343683890016076,
+        "loudness_contour": 0.642120361328125,
+        "hnr_score": 0.3105712831020355,
+        "model_used": "openSMILE Acoustic Feature Extractor"
+      },
+      "bert": {
+        "caller_dominant_sentiment": "Negative",
+        "operator_dominant_sentiment": "Neutral",
+        "sentiment_timeline": [
+          {
+            "speaker": "Caller",
+            "start": 30.0,
+            "end": 43.28,
+            "text": "\u0935\u0947 \u0906\u0932 \u091c\u0939 chcia\u092e \u0939\u094b \u092f\u0947 \u092c \u0939\u043e\u043b\u043d\u0939\u0938\u093e\u0928 \u0915\u094b \u092c\u0947 \u0932\u093e hoy vanilla",
+            "sentiment": "Negative",
+            "confidence": 0.443652480840683
+          },
+          {
+            "speaker": "Operator",
+            "start": 43.28,
+            "end": 43.28,
+            "text": "",
+            "sentiment": "Neutral",
+            "confidence": 0.0
+          }
+        ],
+        "overall_text_sentiment": "Negative",
+        "key_phrases": [
+          "chcia",
+          "vanilla"
+        ],
+        "model_used": "BERT Text Sentiment & Context Analyzer"
+      },
+      "fusion": {
+        "final_emotion": "Calm",
+        "sentiment_arc": {
+          "caller": "Negative",
+          "operator": "Neutral",
+          "trend": "dynamic"
+        },
+        "text_sentiment": "Negative",
+        "combined_confidence": 0.734,
+        "call_quality_score": 75,
+        "quality_subscores": {
+          "Empathy": 70,
+          "Clarity": 72,
+          "Responsiveness": 72,
+          "Professionalism": 88,
+          "Trauma-Sensitivity": 68,
+          "Protocol Adherence": 76
+        },
+        "escalation_risk": "Medium",
+        "issue_category": "Escalation Risk Review",
+        "resolution_status": "In Progress",
+        "recommendations": [
+          "Reassure the caller and confirm the immediate next step.",
+          "Document any signs of elevated distress or urgency for follow-up.",
+          "Escalate to a trained supervisor if the caller remains distressed or uncertain."
+        ],
+        "model_used": "CatBoost Call Quality Predictor",
+        "warning": null
+      },
+      "call_id": "CALL-2024-0001"
+    }
   }
 }
